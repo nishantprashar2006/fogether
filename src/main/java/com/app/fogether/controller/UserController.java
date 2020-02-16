@@ -4,7 +4,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.fogether.domain.User;
@@ -17,21 +21,21 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepo;
 		
-	@GetMapping("/getUser")
-	public Optional<User> getUser() {
+	@GetMapping("/getUser/{id}")
+	public Optional<User> getUser(@PathVariable Long id) {
 		
-		return userRepo.findById(3L);
+		return userRepo.findById(id);
 		
 	}
 	
-	@GetMapping("/createUser")
-	public String createUser() {
+	@PostMapping("/createUser")
+	public User createUser(@RequestBody User user) {
 		
-		User user1 = new User();
-		user1.setId(2L);
-		user1.setName("Dikshit");
+//		User user1 = new User();
+//		user1.setId(3L);
+//		user1.setName("Prashar");
 		
-		userRepo.save(user1);
-		return "User created";
+		userRepo.save(user);
+		return user;
 	}
 }
