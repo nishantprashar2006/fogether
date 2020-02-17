@@ -91,11 +91,11 @@
 	<distributionManagement>
 		<repository>
 			<id>releases</id>
-			<url>D:\jenkins_deploy\releases</url>
+			<url>http://localhost:8080/maven/repository/release</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
-			<url>D:\jenkins_deploy\snapshots</url>
+			<url>http://localhost:8080/maven/repository/snapshot</url>
 		</snapshotRepository>
 	</distributionManagement>
 
