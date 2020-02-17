@@ -31,10 +31,6 @@ public class UserController {
 	@PostMapping("/createUser")
 	public User createUser(@RequestBody User user) {
 		
-//		User user1 = new User();
-//		user1.setId(3L);
-//		user1.setName("Prashar");
-		
 		userRepo.save(user);
 		return user;
 	}
