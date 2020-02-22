@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,14 +26,10 @@ public class UserController {
 		
 	}
 	
-	@GetMapping("/createUser")
-	public String createUser() {
+	@PostMapping("/createUser")
+	public User createUser(@RequestBody User user) {
 		
-		User user1 = new User();
-		user1.setId(2L);
-		user1.setName("Dikshit");
-		
-		userRepo.save(user1);
-		return "User created";
+		userRepo.save(user);
+		return user;
 	}
 }
