@@ -1,4 +1,4 @@
-package com.app.fogether;
+package com.app.fogether.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -3,6 +3,7 @@ package com.app.fogether.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +22,9 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepo;
 		
+	@Cacheable(value = "users", key = "#id")
 	@GetMapping("/getUser/{id}")
 	public Optional<User> getUser(@PathVariable Long id) {
-		
 		return userRepo.findById(id);
 		
 	}

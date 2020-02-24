@@ -1,12 +1,14 @@
 package com.app.fogether.domain;
 
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class User {
+public class User implements Serializable {
 
 	@Id
 	private Long id;
