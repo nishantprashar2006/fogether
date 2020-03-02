@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.fogether.domain.DatabaseSequence;
 import com.app.fogether.domain.UserSignup;
 import com.app.fogether.repository.UserRepository;
+import com.app.fogether.service.SequenceGeneratorService;
 import com.app.fogether.service.UserService;
 
 @RestController
@@ -23,6 +25,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private SequenceGeneratorService sgs;
+	
 	@Cacheable(value = "users", key = "#id")
 	@GetMapping("/getUser/{id}")
 	public Optional<UserSignup> getUser(@PathVariable Long id) {
@@ -31,16 +36,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/signupUser")
-	public UserSignup signupUser() {
-		UserSignup user = new UserSignup();
-		user.setId(8L);
-		user.setFirstName("test1");
-		user.setMiddleName("test2");
-		user.setLastName("test3");
-		user.setEmail("test.com");
-		user.setPhone(123456789L);
-		user.setPassword("testuser");
+	public UserSignup signupUser(@RequestBody UserSignup user) {
+		user.setId(sgs.generateSequence(UserSignup.SEQUENCE_NAME));
 		userService.signupUser(user);
 		return user;
 	}
+	
 }
